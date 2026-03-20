@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-pastel-pink-50: #faebf0;
+    --color-pastel-pink-100: #f5d6e1;
+    --color-pastel-pink-200: #eaaec3;
+    --color-pastel-pink-300: #e085a5;
+    --color-pastel-pink-400: #d55d87;
+    --color-pastel-pink-500: #cb3469;
+    --color-pastel-pink-600: #a22a54;
+    --color-pastel-pink-700: #7a1f3f;
+    --color-pastel-pink-800: #51152a;
+    --color-pastel-pink-900: #290a15;
+    --color-pastel-pink-950: #1c070f;
+}
+
+@layer base {
+    *, ::before, ::after {
+        @apply transition-colors duration-300;
+    }
+}
+
