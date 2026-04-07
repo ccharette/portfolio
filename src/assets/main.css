@@ -1,24 +1,38 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+}
 
 @theme {
-    --color-pastel-pink-50: #faebf0;
-    --color-pastel-pink-100: #f5d6e1;
-    --color-pastel-pink-200: #eaaec3;
-    --color-pastel-pink-300: #e085a5;
-    --color-pastel-pink-400: #d55d87;
-    --color-pastel-pink-500: #cb3469;
-    --color-pastel-pink-600: #a22a54;
-    --color-pastel-pink-700: #7a1f3f;
-    --color-pastel-pink-800: #51152a;
-    --color-pastel-pink-900: #290a15;
-    --color-pastel-pink-950: #1c070f;
+  --color-primary-50: #faebf0;
+  --color-primary-100: #f5d6e1;
+  --color-primary-200: #eaaec3;
+  --color-primary-300: #e085a5;
+  --color-primary-400: #d55d87;
+  --color-primary-500: #cb3469;
+  --color-primary-600: #a22a54;
+  --color-primary-700: #7a1f3f;
+  --color-primary-800: #51152a;
+  --color-primary-900: #290a15;
+  --color-primary-950: #1c070f;
+
+  --text-tiny: 0.625rem;
 }
 
 @layer base {
-    *, ::before, ::after {
-        @apply transition-colors duration-300;
-    }
+  *, ::before, ::after {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
 }
 

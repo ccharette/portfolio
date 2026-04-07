@@ -1,4 +1,4 @@
-import ScrollPosition from './ScrollPosition'
+import ScrollProgress from './ScrollProgress'
 import ThemeToggle from './ThemeToggle'
 
-export { ScrollPosition, ThemeToggle }
+export { ScrollProgress, ThemeToggle }

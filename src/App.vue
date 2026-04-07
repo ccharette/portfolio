@@ -1,38 +1,44 @@
 <script setup>
-import { HeaderNav, SideBar } from '@/layouts'
-import { HeroSection, SkillsSection } from '@/components/sections'
-
+import {
+  ContactSection,
+  ExperienceTimelineSection,
+  ExpertiseSection,
+  HeroSection,
+  SkillSection,
+  WorkPhilosophySection,
+} from '@/components/sections'
+import { ScrollProgress, ThemeToggle } from '@/components/features'
 import { gsap } from 'gsap'
-
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import { onMounted } from 'vue'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
-ScrollSmoother.create({
-  smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-  effects: true, // looks for data-speed and data-lag attributes on elements
-  smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+onMounted(() => {
+  ScrollSmoother.create({
+    wrapper: '#smooth-wrapper',
+    content: '#smooth-content',
+    smooth: 1,
+    effects: true,
+    smoothTouch: 0.2,
+  })
 })
 </script>
 
 <template>
-  <div class="bg-stone-200 dark:bg-stone-900">
-    <header>
-      <HeaderNav />
-    </header>
-    <main>
-      <Teleport to="#ui-layer">
-        <SideBar />
-      </Teleport>
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <HeroSection />
-          <div id="about">
-            <SkillsSection />
-          </div>
-        </div>
+  <div>
+    <ScrollProgress />
+    <ThemeToggle class="flow-btn fixed top-5 right-5 z-201" />
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <HeroSection />
+        <ExpertiseSection />
+        <SkillSection />
+        <ExperienceTimelineSection />
+        <WorkPhilosophySection />
+        <ContactSection />
       </div>
-    </main>
+    </div>
   </div>
 </template>

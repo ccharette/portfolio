@@ -1,0 +1,15 @@
+export const SKILL_TAGS = Object.freeze({
+  javascript: { label: 'javascript', icon: 'fa-js' },
+  vue: { label: 'vue', icon: 'fa-vuejs' },
+  tailwind: { label: 'tailwind', icon: 'fa-tailwind-css' },
+  php: { label: 'php', icon: 'fa-php' },
+  laravel: { label: 'laravel', icon: 'fa-laravel' },
+  docker: { label: 'docker', icon: 'fa-docker' },
+  github: { label: 'github', icon: 'fa-github' },
+  figma: { label: 'figma', icon: 'fa-figma' },
+  slack: { label: 'slack', icon: 'fa-slack' },
+  bitbucket: { label: 'bitbucket', icon: 'fa-bitbucket' },
+  asana: { label: 'asana', icon: null },
+  jira: { label: 'jira', icon: null },
+  clickup: { label: 'clickup', icon: null },
+})
