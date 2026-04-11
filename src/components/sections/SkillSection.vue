@@ -4,8 +4,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { BaseSection, ProgressBar } from '@/components/ui/index.js'
 
-gsap.registerPlugin(ScrollTrigger)
-
 const activeCategory = ref('frontend')
 const sectionRef = ref(null)
 const tabsRef = ref(null)
@@ -82,6 +80,7 @@ const setActiveCategory = (id) => {
 
   nextTick(() => {
     animateSkills()
+    ScrollTrigger.refresh()
   })
 }
 
@@ -91,25 +90,22 @@ const animateSkills = () => {
 
   gsap.fromTo(
     items,
-    { opacity: 0, x: -50 },
+    { opacity: 0, x: -30 },
     {
       opacity: 1,
       x: 0,
-      duration: 0.5,
-      stagger: 0.1,
+      duration: 0.4,
+      stagger: 0.05,
       ease: 'power2.out',
       clearProps: 'all',
     },
   )
-
-  ScrollTrigger.refresh()
 }
 </script>
 
 <template>
   <BaseSection
     ref="sectionRef"
-    class="bg-stone-900"
     dark
     description="7+ années d'expérience en développement full stack"
     title="Compétences Détaillées"
@@ -131,39 +127,28 @@ const animateSkills = () => {
           <span class="font-medium">{{ category.label }}</span>
         </div>
         <Transition name="tab-border">
-          <div
-            v-if="activeCategory === category.id"
-            class="absolute inset-0 rounded-xl border-2 border-white/20"
-          ></div>
+          <div v-if="activeCategory === category.id" class="absolute inset-0 rounded-xl border-2 border-white/20"></div>
         </Transition>
       </button>
     </div>
 
-    <div :key="activeCategory" ref="skillsGridRef" class="w-[calc(100%-2rem)] max-w-3xl space-y-4">
-      <div
-        v-for="skill in skills[activeCategory]"
-        :key="skill.name"
-        class="skill-item group relative"
-      >
+    <div
+      :key="activeCategory"
+      ref="skillsGridRef"
+      class="w-[calc(100%-2rem)] max-w-3xl space-y-4 will-change-[transform,opacity]"
+    >
+      <div v-for="skill in skills[activeCategory]" :key="skill.name" class="skill-item group relative">
         <div
           class="rounded-xl border border-stone-700/50 bg-stone-800/50 p-6 backdrop-blur-xl transition-colors hover:border-stone-600/50"
         >
           <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-semibold text-white">{{ skill.name }}</h3>
-            <span
-              :class="[
-                'bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent',
-                skill.color,
-              ]"
-            >
+            <span :class="['bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent', skill.color]">
               {{ skill.level }}%
             </span>
           </div>
 
-          <ProgressBar
-            :background-classes="`bg-gradient-to-r ${skill.color}`"
-            :percentage="skill.level"
-          />
+          <ProgressBar :background-classes="`bg-gradient-to-r ${skill.color}`" :percentage="skill.level" />
         </div>
       </div>
     </div>

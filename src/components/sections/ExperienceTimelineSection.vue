@@ -157,7 +157,7 @@ onUnmounted(() => {
             :key="item.year"
             ref="timelineItems"
             :class="[
-              'relative flex flex-row items-center',
+              'relative flex flex-row items-center will-change-[transform,opacity]',
               index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse',
             ]"
           >

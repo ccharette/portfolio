@@ -5,7 +5,25 @@
   <link href="/favicon.ico" rel="icon">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Vite App</title>
+  <script>
+    (function () {
+      const isDark =
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      window.__INITIAL_THEME__ = isDark ? 'dark' : 'light';
 
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
+    })();
+  </script>
   <script crossorigin="anonymous" src="https://kit.fontawesome.com/a7f0aec245.js"></script>
 </head>
 <body class="bg-stone-200 dark:bg-stone-900 transition-colors duration-300">

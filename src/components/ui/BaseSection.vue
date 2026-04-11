@@ -50,12 +50,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section ref="sectionEl">
+  <section ref="sectionEl" :class="{ 'bg-stone-200 dark:bg-stone-900': !dark, 'bg-stone-900': dark }">
     <Container class="flex flex-col items-center justify-center space-y-12 py-28">
       <div ref="headerRef" class="space-y-4 text-center">
         <h2
           :class="[
-            'bg-gradient-to-r bg-clip-text text-5xl font-bold text-transparent md:text-6xl',
+            'bg-linear-to-r bg-clip-text text-5xl font-bold text-transparent md:text-6xl',
             {
               'from-gray-900 to-gray-600 dark:from-white dark:to-stone-400': !dark,
               'from-white to-stone-400': dark,
@@ -66,10 +66,13 @@ onUnmounted(() => {
         </h2>
         <p
           v-if="description"
-          :class="{
-            'text-gray-600 dark:text-stone-400': !dark,
-            'text-stone-400': dark,
-          }"
+          :class="[
+            'max-w-3xl',
+            {
+              'text-gray-600 dark:text-stone-400': !dark,
+              'text-stone-400': dark,
+            },
+          ]"
         >
           {{ description }}
         </p>

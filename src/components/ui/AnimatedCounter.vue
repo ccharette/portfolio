@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { gsap } from 'gsap'
 
 const props = defineProps({
@@ -24,23 +24,32 @@ const props = defineProps({
 const count = ref(0)
 const counterRef = ref(null)
 
+let ctx
+
 const startAnimation = () => {
-  gsap.to(count, {
-    value: props.end,
-    duration: props.duration,
-    delay: props.delay,
-    ease: 'power2.out',
-    snap: { value: 1 },
-    scrollTrigger: {
-      trigger: counterRef.value,
-      start: 'top 85%',
-      toggleActions: 'play none none none',
-    },
-  })
+  if (ctx) ctx.revert()
+  ctx = gsap.context(() => {
+    gsap.to(count, {
+      value: props.end,
+      duration: props.duration,
+      delay: props.delay,
+      ease: 'power2.out',
+      snap: { value: 1 },
+      scrollTrigger: {
+        trigger: counterRef.value,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    })
+  }, counterRef.value)
 }
 
 onMounted(() => {
   startAnimation()
+})
+
+onUnmounted(() => {
+  if (ctx) ctx.revert()
 })
 
 // Watch for changes if end value is dynamic (though here it's static in the React code)

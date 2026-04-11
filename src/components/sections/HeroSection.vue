@@ -155,7 +155,7 @@ onMounted(() => {
       end: '+=50%', // Fade out completely within 50% of the viewport height
       scrub: true,
       pin: true,
-      pinSpacing: false, // Allow following content to overlap or follow tightly
+      pinSpacing: false, // Allow following content to wait until hero section is scrolled past
       invalidateOnRefresh: true,
       anticipatePin: 1,
       onEnter: () => {
@@ -244,17 +244,11 @@ onMounted(() => {
         </div>
 
         <!-- Description -->
-        <p
-          class="mx-auto max-w-3xl text-lg leading-relaxed text-stone-600 md:text-xl dark:text-stone-400"
-        >
+        <p class="mx-auto max-w-3xl text-lg leading-relaxed text-stone-600 md:text-xl dark:text-stone-400">
           Spécialiste de la
-          <span class="font-medium text-purple-700 dark:text-purple-300">
-            logique d'application
-          </span>
+          <span class="font-medium text-purple-700 dark:text-purple-300"> logique d'application </span>
           et de l'
-          <span class="font-medium text-emerald-700 dark:text-emerald-300">
-            architecture technique
-          </span>
+          <span class="font-medium text-emerald-700 dark:text-emerald-300"> architecture technique </span>
           . Maîtrise exceptionnelle de Laravel & Vue.js.
         </p>
 

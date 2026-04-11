@@ -2,11 +2,11 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { BaseSection, ColorfulCard } from '@/components/ui/index.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const sectionRef = ref(null)
-const headerRef = ref(null)
 const mainCardRef = ref(null)
 const socialLinksRefs = ref([])
 const cvButtonRef = ref(null)
@@ -14,7 +14,6 @@ const interestsRef = ref(null)
 const interestItemsRefs = ref([])
 const footerRef = ref(null)
 const particlesRefs = ref([])
-const bgCircle = ref(null)
 
 const hoveredIcon = ref(null)
 
@@ -23,25 +22,25 @@ const socialLinks = [
     id: 'email',
     icon: 'fa-solid fa-envelope',
     label: 'Email',
-    href: 'mailto:votre.email@example.com',
+    href: 'mailto:ccharette.dev@gmail.com',
     color: 'from-rose-500 to-pink-500',
-    description: 'votre.email@example.com',
+    description: 'ccharette.dev@gmail.com',
   },
   {
     id: 'linkedin',
     icon: 'fa-brands fa-linkedin-in',
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/votreprofil',
+    href: 'https://www.linkedin.com/in/catherinecharette/',
     color: 'from-blue-500 to-cyan-500',
-    description: '/in/votreprofil',
+    description: '/in/catherinecharette',
   },
   {
     id: 'github',
     icon: 'fa-brands fa-github',
     label: 'GitHub',
-    href: 'https://github.com/votreprofil',
+    href: 'https://github.com/ccharette',
     color: 'from-purple-500 to-violet-500',
-    description: '@votreprofil',
+    description: '@ccharette',
   },
 ]
 
@@ -55,17 +54,6 @@ let ctx
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    // Background glow animation
-    gsap.to(bgCircle.value, {
-      scale: 1.3,
-      opacity: 0.2,
-      duration: 15,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut',
-    })
-
-    // Particles animation
     particlesRefs.value.forEach((particle) => {
       gsap.to(particle, {
         y: -30,
@@ -76,17 +64,6 @@ onMounted(() => {
         delay: Math.random() * 2,
         ease: 'power1.inOut',
       })
-    })
-
-    // Scroll animations
-    gsap.from(headerRef.value, {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      scrollTrigger: {
-        trigger: headerRef.value,
-        start: 'top 85%',
-      },
     })
 
     gsap.from(mainCardRef.value, {
@@ -166,58 +143,29 @@ const handleHoverEnd = () => {
 </script>
 
 <template>
-  <section
-    ref="sectionRef"
-    class="relative overflow-hidden bg-gradient-to-b from-stone-950 to-black px-6 py-32"
+  <BaseSection
+    description="Vous cherchez une développeuse full stack sénior qui maîtrise Laravel et Vue.js ? Parlons de votre projet."
+    title="Travaillons ensemble"
   >
-    <!-- Background effects -->
-    <div class="pointer-events-none absolute inset-0">
+    <!-- Main contact card -->
+    <div ref="mainCardRef" class="mb-12">
       <div
-        ref="bgCircle"
-        class="absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-emerald-500/20 opacity-10 blur-3xl"
-      ></div>
-    </div>
-
-    <div class="relative mx-auto max-w-5xl">
-      <div ref="headerRef" class="mb-16 text-center">
-        <h2
-          class="mb-6 bg-gradient-to-r from-white via-purple-200 to-emerald-200 bg-clip-text text-5xl font-bold text-transparent md:text-6xl"
-        >
-          Travaillons Ensemble
-        </h2>
-        <p class="mx-auto max-w-2xl text-xl text-stone-400">
-          Vous cherchez une développeuse full stack sénior qui maîtrise Laravel et Vue.js ? Parlons
-          de votre projet.
-        </p>
-      </div>
-
-      <!-- Main contact card -->
-      <div ref="mainCardRef" class="mb-12">
-        <div
-          class="relative rounded-3xl border border-stone-700/50 bg-gradient-to-br from-stone-900/80 to-stone-800/80 p-8 backdrop-blur-xl md:p-12"
-        >
-          <div class="grid gap-8 md:grid-cols-3">
-            <a
-              v-for="link in socialLinks"
-              :key="link.id"
-              ref="socialLinksRefs"
-              :href="link.href"
-              :rel="link.id !== 'email' ? 'noopener noreferrer' : undefined"
-              :target="link.id !== 'email' ? '_blank' : undefined"
-              class="group relative h-full transition-transform duration-300 hover:-translate-y-2"
-              @mouseenter="handleHoverStart(link.id)"
-              @mouseleave="handleHoverEnd"
-            >
-              <div
-                :class="[
-                  'absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20',
-                  link.color,
-                ]"
-              ></div>
-
-              <div
-                class="relative flex h-full flex-col items-center rounded-2xl border border-stone-700/50 bg-stone-800/50 p-6 text-center transition-all duration-300 group-hover:border-stone-600/50"
-              >
+        class="relative rounded-3xl border border-stone-700/50 bg-gradient-to-br from-stone-900/80 to-stone-800/80 p-8 backdrop-blur-xl md:p-12"
+      >
+        <div class="grid gap-8 md:grid-cols-3">
+          <a
+            v-for="link in socialLinks"
+            :key="link.id"
+            ref="socialLinksRefs"
+            :href="link.href"
+            :rel="link.id !== 'email' ? 'noopener noreferrer' : undefined"
+            :target="link.id !== 'email' ? '_blank' : undefined"
+            class="group relative h-full transition-transform duration-300 will-change-[transform,opacity] hover:-translate-y-2"
+            @mouseenter="handleHoverStart(link.id)"
+            @mouseleave="handleHoverEnd"
+          >
+            <ColorfulCard :colorClasses="link.color">
+              <div class="flex flex-col items-center justify-center">
                 <div
                   :class="[
                     'mb-4 h-16 w-16 rounded-full bg-gradient-to-br p-0.5 shadow-lg transition-transform duration-500',
@@ -239,44 +187,44 @@ const handleHoverEnd = () => {
                   {{ link.description }}
                 </p>
               </div>
-            </a>
-          </div>
-
-          <!-- Download CV button -->
-          <div ref="cvButtonRef" class="mt-8 text-center">
-            <button
-              class="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
-            >
-              <i class="fa-solid fa-download group-hover:animate-bounce"></i>
-              <span>Télécharger mon CV</span>
-            </button>
-          </div>
+            </ColorfulCard>
+          </a>
         </div>
-      </div>
 
-      <!-- Interests section -->
-      <div ref="interestsRef" class="mb-12 text-center">
-        <p class="mb-6 text-sm text-stone-500">Au-delà du code</p>
-        <div class="flex flex-wrap justify-center gap-6">
-          <div
-            v-for="interest in interests"
-            :key="interest.label"
-            ref="interestItemsRefs"
-            class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-xl transition-transform duration-300 hover:scale-120 hover:rotate-5"
+        <!-- Download CV button -->
+        <div ref="cvButtonRef" class="mt-8 text-center">
+          <button
+            class="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
           >
-            <i :class="[interest.icon, interest.color, 'text-lg']"></i>
-            <span class="text-stone-300">{{ interest.label }}</span>
-          </div>
+            <i class="fa-solid fa-download group-hover:animate-bounce"></i>
+            <span>Télécharger mon CV</span>
+          </button>
         </div>
       </div>
+    </div>
 
-      <!-- Footer text -->
-      <div ref="footerRef" class="space-y-4 border-t border-stone-800 pt-12 text-center">
-        <p class="text-sm text-stone-500">
-          Développé avec <span class="text-rose-400">♥</span> logique et précision
-        </p>
-        <p class="text-xs text-stone-600">© 2026 - Votre Nom - Full Stack Developer</p>
+    <!-- Interests section -->
+    <div ref="interestsRef" class="mb-12 text-center">
+      <p class="mb-6 text-sm text-stone-500">Au-delà du code</p>
+      <div class="flex flex-wrap justify-center gap-6">
+        <div
+          v-for="interest in interests"
+          :key="interest.label"
+          ref="interestItemsRefs"
+          class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-xl transition-transform duration-300 will-change-transform hover:scale-120 hover:rotate-5"
+        >
+          <i :class="[interest.icon, interest.color, 'text-lg']"></i>
+          <span class="text-stone-300">{{ interest.label }}</span>
+        </div>
       </div>
+    </div>
+
+    <!-- Footer text -->
+    <div ref="footerRef" class="space-y-4 border-t border-stone-800 pt-12 text-center">
+      <p class="text-sm text-stone-500">
+        Développé avec <span class="text-rose-400">♥</span> logique et précision
+      </p>
+      <p class="text-xs text-stone-600">© 2026 - Catherine Charette - Full Stack Developer</p>
     </div>
 
     <!-- Floating particles -->
@@ -290,7 +238,5 @@ const handleHoverEnd = () => {
       }"
       class="absolute h-1 w-1 rounded-full bg-white/20"
     ></div>
-  </section>
+  </BaseSection>
 </template>
-
-<style scoped></style>

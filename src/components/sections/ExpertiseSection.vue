@@ -1,6 +1,9 @@
 <script setup>
-import { BaseSection, ListBullet, ProgressBar } from '@/components/ui'
-import { ColorfulCard } from '@/components/ui/index.js'
+import { BaseSection, ColorfulCard, ListBullet, ProgressBar } from '@/components/ui'
+
+const title = 'Expertise technique'
+const description =
+  "Ma maîtrise technique couvre une gamme de technologies et domaines, depuis le front-end jusqu'au back-end, en passant par la gestion et la sécurité. Je suis capable de concevoir, développer et optimiser des applications web robustes et performantes."
 
 const skills = [
   {
@@ -11,22 +14,18 @@ const skills = [
     color: 'from-rose-500 to-pink-500',
     borderColor: 'border-rose-500/20',
     glowColor: 'shadow-rose-500/20',
-    description: "Vue.js, logique d'application, intégration de maquettes",
-    details: [
-      'Architecture de composants',
-      "Gestion d'état complexe",
-      'UX plutôt que UI/animations',
-    ],
+    description: 'Javascript, HTML, Vue.js, Tailwind CSS',
+    details: ["Architecture d'applications", 'Intégration de maquettes', "Optimisation de l'expérience utilisateur"],
   },
   {
     icon: 'fa-solid fa-database',
     title: 'Back-end',
     level: 'Avancé',
-    percentage: 85,
+    percentage: 75,
     color: 'from-emerald-500 to-teal-500',
     borderColor: 'border-emerald-500/20',
     glowColor: 'shadow-emerald-500/20',
-    description: 'Laravel, architecture serveur, APIs',
+    description: 'PHP, MySQL, Laravel',
     details: ['Développement Laravel', 'Architecture de bases de données', 'APIs RESTful'],
   },
   {
@@ -38,11 +37,7 @@ const skills = [
     borderColor: 'border-purple-500/20',
     glowColor: 'shadow-purple-500/20',
     description: 'Vision bout en bout, optimisation',
-    details: [
-      'Intégration front-back fluide',
-      'Optimisation de performance',
-      'Architecture globale',
-    ],
+    details: ['Intégration front-back fluide', 'Optimisation de performance', 'Architecture globale'],
   },
   {
     icon: 'fa-solid fa-cubes',
@@ -59,21 +54,16 @@ const skills = [
 </script>
 
 <template>
-  <BaseSection title="Expertise technique">
+  <BaseSection :description :title>
     <div class="grid w-full grid-cols-2 gap-6">
       <div v-for="skill in skills" :key="skill.title" class="group relative w-full">
         <ColorfulCard :color-classes="skill.color">
           <div class="flex items-center justify-between">
-            <span :class="['rounded-xl bg-gradient-to-br p-4 shadow-lg', skill.color]">
+            <span :class="['rounded-xl bg-linear-to-br p-4 shadow-lg', skill.color]">
               <i :class="['text-2xl text-white', skill.icon]" />
             </span>
             <div>
-              <div
-                :class="[
-                  'bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent',
-                  skill.color,
-                ]"
-              >
+              <div :class="['bg-linear-to-r bg-clip-text text-3xl font-bold text-transparent', skill.color]">
                 {{ skill.percentage }}%
               </div>
               <div class="text-right text-xs text-gray-600 dark:text-stone-400">
@@ -92,17 +82,13 @@ const skills = [
             :percentage="skill.percentage"
             class="mt-4"
           />
-          <ul class="mt-6 space-y-2">
-            <ListBullet
-              v-for="(bullet, i) in skill.details"
-              :key="i"
-              :color="`bg-gradient-to-br ${skill.color}`"
-            >
+          <ListBullet :color-classes="`bg-gradient-to-br ${skill.color}`" :items="skill.details" class="mt-6">
+            <template v-slot="{ item }">
               <p class="text-xs text-stone-700 dark:text-stone-300">
-                {{ bullet }}
+                {{ item }}
               </p>
-            </ListBullet>
-          </ul>
+            </template>
+          </ListBullet>
         </ColorfulCard>
       </div>
     </div>
