@@ -8,10 +8,6 @@ defineProps({
     type: String,
     default: '',
   },
-  dark: {
-    type: Boolean,
-    default: false,
-  },
   title: {
     type: String,
     required: true,
@@ -50,30 +46,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section ref="sectionEl" :class="{ 'bg-stone-200 dark:bg-stone-900': !dark, 'bg-stone-900': dark }">
+  <section ref="sectionEl">
     <Container class="flex flex-col items-center justify-center space-y-12 py-28">
       <div ref="headerRef" class="space-y-4 text-center">
         <h2
           :class="[
             'bg-linear-to-r bg-clip-text text-5xl font-bold text-transparent md:text-6xl',
-            {
-              'from-gray-900 to-gray-600 dark:from-white dark:to-stone-400': !dark,
-              'from-white to-stone-400': dark,
-            },
+            'from-gray-900 to-gray-600 dark:from-white dark:to-stone-400',
           ]"
         >
           {{ title }}
         </h2>
-        <p
-          v-if="description"
-          :class="[
-            'max-w-3xl',
-            {
-              'text-gray-600 dark:text-stone-400': !dark,
-              'text-stone-400': dark,
-            },
-          ]"
-        >
+        <p v-if="description" :class="['max-w-3xl', 'text-gray-600 dark:text-stone-400']">
           {{ description }}
         </p>
       </div>

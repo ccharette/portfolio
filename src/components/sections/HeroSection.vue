@@ -190,7 +190,7 @@ onMounted(() => {
 <template>
   <section
     ref="heroContainer"
-    class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-purple-50 via-pink-50 to-emerald-50 transition-colors duration-500 dark:from-stone-900 dark:via-purple-950/30 dark:to-emerald-950/20"
+    class="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-br from-purple-50 via-pink-50 to-emerald-50 transition-colors duration-500 dark:from-stone-900 dark:via-purple-950/30 dark:to-emerald-950/20"
   >
     <!-- Floating icons with easter eggs -->
     <div

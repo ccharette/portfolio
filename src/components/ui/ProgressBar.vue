@@ -50,13 +50,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-stone-800">
+  <div class="h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-stone-700">
     <div
       ref="progressBar"
-      :class="[
-        'relative h-full overflow-hidden rounded-full will-change-[width]',
-        backgroundClasses,
-      ]"
+      :class="['relative h-full overflow-hidden rounded-full will-change-[width]', backgroundClasses]"
       style="width: 0%"
     >
       <div

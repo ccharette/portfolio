@@ -71,7 +71,7 @@ const skills = [
               </div>
             </div>
           </div>
-          <p class="mt-6 text-lg font-bold">
+          <p class="mt-6 text-lg font-bold text-stone-600 dark:text-stone-100">
             {{ skill.title }}
           </p>
           <p class="text-xs text-stone-600 dark:text-stone-400">

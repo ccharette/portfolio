@@ -150,7 +150,7 @@ const handleHoverEnd = () => {
     <!-- Main contact card -->
     <div ref="mainCardRef" class="mb-12">
       <div
-        class="relative rounded-3xl border border-stone-700/50 bg-gradient-to-br from-stone-900/80 to-stone-800/80 p-8 backdrop-blur-xl md:p-12"
+        class="relative rounded-3xl border border-stone-200 bg-white p-8 shadow-xl backdrop-blur-xl md:p-12 dark:border-stone-700/50 dark:bg-gradient-to-br dark:from-stone-900/80 dark:to-stone-800/80"
       >
         <div class="grid gap-8 md:grid-cols-3">
           <a
@@ -173,17 +173,15 @@ const handleHoverEnd = () => {
                     { 'scale-110 rotate-[360deg]': hoveredIcon === link.id },
                   ]"
                 >
-                  <div
-                    class="flex h-full w-full items-center justify-center rounded-full bg-stone-900"
-                  >
-                    <i :class="[link.icon, 'text-2xl text-white']"></i>
+                  <div class="flex h-full w-full items-center justify-center rounded-full bg-white dark:bg-stone-900">
+                    <i :class="[link.icon, 'text-2xl text-stone-900 dark:text-white']"></i>
                   </div>
                 </div>
 
-                <h3 class="mb-2 text-xl font-bold text-white">
+                <h3 class="mb-2 text-xl font-bold text-stone-900 dark:text-white">
                   {{ link.label }}
                 </h3>
-                <p class="text-sm text-stone-400">
+                <p class="text-sm text-stone-500 dark:text-stone-400">
                   {{ link.description }}
                 </p>
               </div>
@@ -221,9 +219,7 @@ const handleHoverEnd = () => {
 
     <!-- Footer text -->
     <div ref="footerRef" class="space-y-4 border-t border-stone-800 pt-12 text-center">
-      <p class="text-sm text-stone-500">
-        Développé avec <span class="text-rose-400">♥</span> logique et précision
-      </p>
+      <p class="text-sm text-stone-500">Développé avec <span class="text-rose-400">♥</span> logique et précision</p>
       <p class="text-xs text-stone-600">© 2026 - Catherine Charette - Full Stack Developer</p>
     </div>
 

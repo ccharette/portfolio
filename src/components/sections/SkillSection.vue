@@ -116,8 +116,8 @@ const animateSkills = () => {
         :key="category.id"
         :class="
           activeCategory === category.id
-            ? 'bg-white/10 text-white'
-            : 'bg-white/5 text-stone-400 hover:bg-white/8 hover:text-white'
+            ? 'bg-stone-200 text-stone-900 dark:bg-white/10 dark:text-white'
+            : 'bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-900 dark:bg-white/5 dark:text-stone-400 dark:hover:bg-white/8 dark:hover:text-white'
         "
         class="group relative rounded-xl px-6 py-3 transition-all duration-300"
         @click="setActiveCategory(category.id)"
@@ -127,7 +127,10 @@ const animateSkills = () => {
           <span class="font-medium">{{ category.label }}</span>
         </div>
         <Transition name="tab-border">
-          <div v-if="activeCategory === category.id" class="absolute inset-0 rounded-xl border-2 border-white/20"></div>
+          <div
+            v-if="activeCategory === category.id"
+            class="absolute inset-0 rounded-xl border-2 border-stone-300 dark:border-white/20"
+          ></div>
         </Transition>
       </button>
     </div>
@@ -139,10 +142,10 @@ const animateSkills = () => {
     >
       <div v-for="skill in skills[activeCategory]" :key="skill.name" class="skill-item group relative">
         <div
-          class="rounded-xl border border-stone-700/50 bg-stone-800/50 p-6 backdrop-blur-xl transition-colors hover:border-stone-600/50"
+          class="rounded-xl border border-stone-200 bg-white p-6 shadow-sm backdrop-blur-xl transition-colors hover:border-stone-300 dark:border-stone-700/50 dark:bg-stone-800/50 dark:hover:border-stone-600/50"
         >
           <div class="mb-4 flex items-center justify-between">
-            <h3 class="text-lg font-semibold text-white">{{ skill.name }}</h3>
+            <h3 class="text-lg font-semibold text-stone-900 dark:text-white">{{ skill.name }}</h3>
             <span :class="['bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent', skill.color]">
               {{ skill.level }}%
             </span>

@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
   <div>
     <ScrollProgress />
-    <ThemeToggle class="fixed top-5 right-5 z-201" />
+    <ThemeToggle class="fixed top-5 right-5 z-50" />
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <HeroSection />
