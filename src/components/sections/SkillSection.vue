@@ -4,6 +4,9 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { BaseSection, ProgressBar } from '@/components/ui/index.js'
 
+const title = 'Compétences détaillées'
+const description = "7+ années d'expérience en développement full stack"
+
 const activeCategory = ref('frontend')
 const sectionRef = ref(null)
 const tabsRef = ref(null)
@@ -18,32 +21,32 @@ const categories = [
 
 const skills = {
   frontend: [
-    { name: 'Vue.js', level: 95, color: 'from-emerald-500 to-teal-500' },
+    { name: 'Vue.js', level: 85, color: 'from-emerald-500 to-teal-500' },
     { name: 'JavaScript/ES6+', level: 90, color: 'from-yellow-500 to-amber-500' },
-    { name: 'HTML/CSS', level: 85, color: 'from-blue-500 to-cyan-500' },
-    { name: 'Intégration UX', level: 90, color: 'from-purple-500 to-pink-500' },
-    { name: "Logique d'application", level: 98, color: 'from-rose-500 to-pink-500' },
+    { name: 'HTML/CSS', level: 75, color: 'from-blue-500 to-cyan-500' },
+    { name: 'TailwindCSS', level: 80, color: 'from-purple-500 to-pink-500' },
+    { name: "Logique d'application", level: 95, color: 'from-rose-500 to-pink-500' },
   ],
   backend: [
-    { name: 'Laravel', level: 90, color: 'from-red-500 to-orange-500' },
-    { name: 'PHP', level: 88, color: 'from-indigo-500 to-purple-500' },
-    { name: 'MySQL/PostgreSQL', level: 85, color: 'from-blue-500 to-indigo-500' },
-    { name: 'REST APIs', level: 92, color: 'from-green-500 to-emerald-500' },
-    { name: 'Architecture', level: 87, color: 'from-cyan-500 to-blue-500' },
+    { name: 'Laravel', level: 75, color: 'from-red-500 to-orange-500' },
+    { name: 'PHP', level: 70, color: 'from-indigo-500 to-purple-500' },
+    { name: 'MySQL/PostgreSQL', level: 55, color: 'from-blue-500 to-indigo-500' },
+    { name: 'REST APIs', level: 85, color: 'from-green-500 to-emerald-500' },
+    { name: 'Architecture', level: 85, color: 'from-cyan-500 to-blue-500' },
   ],
   tools: [
-    { name: 'Git', level: 90, color: 'from-orange-500 to-red-500' },
-    { name: 'DevOps', level: 80, color: 'from-blue-500 to-purple-500' },
-    { name: 'Gestion serveur', level: 82, color: 'from-green-500 to-teal-500' },
-    { name: 'CI/CD', level: 78, color: 'from-violet-500 to-purple-500' },
-    { name: 'Code Review', level: 93, color: 'from-pink-500 to-rose-500' },
+    { name: 'Git', level: 85, color: 'from-orange-500 to-red-500' },
+    { name: 'DevOps', level: 70, color: 'from-blue-500 to-purple-500' },
+    { name: 'Gestion serveur', level: 75, color: 'from-green-500 to-teal-500' },
+    { name: 'CI/CD', level: 75, color: 'from-violet-500 to-purple-500' },
+    { name: 'Code Review', level: 85, color: 'from-pink-500 to-rose-500' },
   ],
   soft: [
-    { name: 'Leadership technique', level: 88, color: 'from-purple-500 to-pink-500' },
+    { name: 'Leadership technique', level: 75, color: 'from-purple-500 to-pink-500' },
     { name: "Gestion d'équipe", level: 85, color: 'from-blue-500 to-cyan-500' },
-    { name: 'Gestion de projet', level: 87, color: 'from-emerald-500 to-green-500' },
-    { name: 'Mentorat', level: 90, color: 'from-amber-500 to-orange-500' },
-    { name: 'Communication', level: 86, color: 'from-rose-500 to-pink-500' },
+    { name: 'Gestion de projet', level: 85, color: 'from-emerald-500 to-green-500' },
+    { name: 'Mentorat', level: 80, color: 'from-amber-500 to-orange-500' },
+    { name: 'Communication', level: 90, color: 'from-rose-500 to-pink-500' },
   ],
 }
 
@@ -78,6 +81,16 @@ const setActiveCategory = (id) => {
 
   activeCategory.value = id
 
+  // Center the active tab on mobile
+  const activeTab = tabsRef.value.children[categories.findIndex((c) => c.id === id)]
+  if (activeTab) {
+    activeTab.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+  }
+
   nextTick(() => {
     animateSkills()
     ScrollTrigger.refresh()
@@ -104,27 +117,25 @@ const animateSkills = () => {
 </script>
 
 <template>
-  <BaseSection
-    ref="sectionRef"
-    dark
-    description="7+ années d'expérience en développement full stack"
-    title="Compétences Détaillées"
-  >
-    <div ref="tabsRef" class="mb-12 flex flex-wrap justify-center gap-4">
+  <BaseSection ref="sectionRef" dark :description :title>
+    <div
+      ref="tabsRef"
+      class="mb-12 flex w-full max-w-full gap-4 overflow-x-auto px-1 py-0.5 pb-4 sm:flex-wrap sm:justify-center sm:overflow-x-visible sm:pb-0"
+    >
       <button
         v-for="category in categories"
         :key="category.id"
-        :class="
+        :class="[
           activeCategory === category.id
-            ? 'bg-stone-200 text-stone-900 dark:bg-white/10 dark:text-white'
-            : 'bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-900 dark:bg-white/5 dark:text-stone-400 dark:hover:bg-white/8 dark:hover:text-white'
-        "
-        class="group relative rounded-xl px-6 py-3 transition-all duration-300"
+            ? 'scale-105 bg-stone-200 text-stone-900 dark:bg-white/10 dark:text-white'
+            : 'bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-900 dark:bg-white/5 dark:text-stone-400 dark:hover:bg-white/8 dark:hover:text-white',
+          'group relative flex-shrink-0 rounded-xl px-4 py-3 transition-all duration-300 sm:px-6',
+        ]"
         @click="setActiveCategory(category.id)"
       >
         <div class="flex items-center gap-2">
-          <i :class="['flex h-5 w-5 items-center justify-center', category.icon]"></i>
-          <span class="font-medium">{{ category.label }}</span>
+          <i :class="['flex w-5 items-center justify-center', category.icon]"></i>
+          <span class="sm:text-md text-sm font-medium">{{ category.label }}</span>
         </div>
         <Transition name="tab-border">
           <div
@@ -135,18 +146,16 @@ const animateSkills = () => {
       </button>
     </div>
 
-    <div
-      :key="activeCategory"
-      ref="skillsGridRef"
-      class="w-[calc(100%-2rem)] max-w-3xl space-y-4 will-change-[transform,opacity]"
-    >
+    <div :key="activeCategory" ref="skillsGridRef" class="w-full max-w-3xl space-y-4 will-change-[transform,opacity]">
       <div v-for="skill in skills[activeCategory]" :key="skill.name" class="skill-item group relative">
         <div
           class="rounded-xl border border-stone-200 bg-white p-6 shadow-sm backdrop-blur-xl transition-colors hover:border-stone-300 dark:border-stone-700/50 dark:bg-stone-800/50 dark:hover:border-stone-600/50"
         >
           <div class="mb-4 flex items-center justify-between">
-            <h3 class="text-lg font-semibold text-stone-900 dark:text-white">{{ skill.name }}</h3>
-            <span :class="['bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent', skill.color]">
+            <h3 class="text-sm font-semibold text-stone-900 sm:text-lg dark:text-white">{{ skill.name }}</h3>
+            <span
+              :class="['bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent sm:text-2xl', skill.color]"
+            >
               {{ skill.level }}%
             </span>
           </div>
@@ -159,6 +168,17 @@ const animateSkills = () => {
 </template>
 
 <style scoped>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.overflow-x-auto {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .tab-border-enter-active,
 .tab-border-leave-active {
   transition: opacity 0.3s ease;

@@ -4,10 +4,10 @@ import {
   ExperienceTimelineSection,
   ExpertiseSection,
   HeroSection,
-  SkillSection,
+  ProjectSection,
   WorkPhilosophySection,
 } from '@/components/sections'
-import { ScrollProgress, ThemeToggle } from '@/components/features'
+import { ScrollProgress } from '@/components/features'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { onMounted } from 'vue'
 
@@ -25,14 +25,14 @@ onMounted(() => {
 <template>
   <div>
     <ScrollProgress />
-    <ThemeToggle class="fixed top-5 right-5 z-50" />
+    <!--    <ThemeToggle class="fixed top-5 right-5 z-50" />-->
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <HeroSection />
+        <ProjectSection />
         <ExpertiseSection />
-        <SkillSection />
-        <ExperienceTimelineSection />
         <WorkPhilosophySection />
+        <ExperienceTimelineSection />
         <ContactSection />
       </div>
     </div>

@@ -221,12 +221,12 @@ onMounted(() => {
     <div class="relative z-10 max-w-5xl px-6 text-center">
       <div class="space-y-8">
         <!-- Badge -->
-        <div
-          class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-100 px-4 py-2 text-sm text-emerald-700 shadow-lg dark:border-white/10 dark:bg-white/5 dark:text-emerald-300 dark:backdrop-blur-xl"
-        >
-          <i class="fa-solid fa-wand-magic-sparkles h-4 w-4"></i>
-          <span>Full Stack Developer depuis 2018</span>
-        </div>
+        <!--        <div-->
+        <!--          class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-100 px-4 py-2 text-sm text-emerald-700 shadow-lg dark:border-white/10 dark:bg-white/5 dark:text-emerald-300 dark:backdrop-blur-xl"-->
+        <!--        >-->
+        <!--          <i class="fa-solid fa-wand-magic-sparkles h-4 w-4"></i>-->
+        <!--          <span>Depuis 2018</span>-->
+        <!--        </div>-->
 
         <!-- Title -->
         <div class="space-y-4">
@@ -239,23 +239,25 @@ onMounted(() => {
           </h1>
 
           <p class="text-2xl font-light text-stone-700 md:text-4xl dark:text-stone-300">
-            <BaseTypewriter :delay="80" text="Développeuse Full Stack Sénior" />
+            <BaseTypewriter :delay="80" text="Développeuse Full Stack" />
           </p>
         </div>
 
         <!-- Description -->
         <p class="mx-auto max-w-3xl text-lg leading-relaxed text-stone-600 md:text-xl dark:text-stone-400">
-          Spécialiste de la
-          <span class="font-medium text-purple-700 dark:text-purple-300"> logique d'application </span>
-          et de l'
-          <span class="font-medium text-emerald-700 dark:text-emerald-300"> architecture technique </span>
-          . Maîtrise exceptionnelle de Laravel & Vue.js.
+          Je développe des
+          <span class="font-medium text-purple-700 dark:text-purple-300"> applications web </span>
+          complètes,
+          <span class="font-medium text-emerald-700 dark:text-emerald-300"> rapides </span>
+          et
+          <span class="font-medium text-emerald-700 dark:text-emerald-300"> faciles à maintenir </span>
+          , pensées pour répondre aux besoins clients.
         </p>
 
         <!-- Tech stack pills -->
         <div class="flex flex-wrap justify-center gap-3">
           <span
-            v-for="tech in ['Laravel', 'Vue.js', 'Tailwind', 'Architecture', 'Leadership']"
+            v-for="tech in ['Laravel', 'Vue.js', 'TailwindCSS', 'Architecture', 'Leadership']"
             :key="tech"
             class="cursor-default rounded-full border border-gray-200 bg-white/80 px-5 py-2.5 text-sm text-stone-700 shadow-sm transition-all hover:-translate-y-1 hover:scale-105 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-stone-300 dark:backdrop-blur-xl dark:hover:bg-white/10"
           >

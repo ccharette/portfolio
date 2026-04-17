@@ -150,7 +150,7 @@ const handleHoverEnd = () => {
     <!-- Main contact card -->
     <div ref="mainCardRef" class="mb-12">
       <div
-        class="relative rounded-3xl border border-stone-200 bg-white p-8 shadow-xl backdrop-blur-xl md:p-12 dark:border-stone-700/50 dark:bg-gradient-to-br dark:from-stone-900/80 dark:to-stone-800/80"
+        class="relative rounded-3xl border border-stone-200 bg-white p-8 shadow-xl backdrop-blur-xl md:p-12 dark:border-stone-700/50 dark:bg-stone-900/80"
       >
         <div class="grid gap-8 md:grid-cols-3">
           <a
@@ -190,14 +190,14 @@ const handleHoverEnd = () => {
         </div>
 
         <!-- Download CV button -->
-        <div ref="cvButtonRef" class="mt-8 text-center">
-          <button
-            class="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
-          >
-            <i class="fa-solid fa-download group-hover:animate-bounce"></i>
-            <span>Télécharger mon CV</span>
-          </button>
-        </div>
+        <!--        <div ref="cvButtonRef" class="mt-8 text-center">-->
+        <!--          <button-->
+        <!--            class="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"-->
+        <!--          >-->
+        <!--            <i class="fa-solid fa-download group-hover:animate-bounce"></i>-->
+        <!--            <span>Télécharger mon CV</span>-->
+        <!--          </button>-->
+        <!--        </div>-->
       </div>
     </div>
 

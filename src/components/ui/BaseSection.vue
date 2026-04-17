@@ -47,17 +47,17 @@ onUnmounted(() => {
 
 <template>
   <section ref="sectionEl">
-    <Container class="flex flex-col items-center justify-center space-y-12 py-28">
+    <Container class="flex flex-col items-center justify-center space-y-12 border-b py-28 dark:border-stone-50/10">
       <div ref="headerRef" class="space-y-4 text-center">
         <h2
           :class="[
-            'bg-linear-to-r bg-clip-text text-5xl font-bold text-transparent md:text-6xl',
+            'bg-linear-to-r bg-clip-text text-4xl font-bold text-transparent sm:text-5xl md:text-6xl',
             'from-gray-900 to-gray-600 dark:from-white dark:to-stone-400',
           ]"
         >
           {{ title }}
         </h2>
-        <p v-if="description" :class="['max-w-3xl', 'text-gray-600 dark:text-stone-400']">
+        <p v-if="description" :class="['sm:text-md max-w-3xl text-sm', 'text-gray-600 dark:text-stone-400']">
           {{ description }}
         </p>
       </div>
